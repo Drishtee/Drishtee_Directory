@@ -398,6 +398,19 @@ function AzureFileExplorer() {
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
+        {currentFolder === 'Root' && (
+          <div className="azurefe-readme-instructions">
+            <h3>Usage Instructions</h3>
+            <ul>
+              <li><b>Do NOT upload editable files</b> such as Excel, Word, text files, or any document that can be modified (e.g., .xlsx, .docx, .txt).</li>
+              <li><b>Only upload non-editable files:</b> images (jpg, png, gif, etc.), PDFs, and other read-only documents.</li>
+              <li>Please use this tool carefully. <b>Do not misuse this tool.</b></li>
+              <li><b>How to Create a Folder:</b> Click the <b>Create</b> button, enter a name, and click <b>Create</b>.</li>
+              <li><b>How to Upload a File:</b> Click <b>Upload File</b> and select your file. Only non-editable files are allowed.</li>
+              <li><b>Drag and Drop Upload:</b> You can drag and drop files directly into the explorer window.</li>
+            </ul>
+          </div>
+        )}
         {dragActive && (
           <div className="azurefe-drag-overlay">
             <div className="azurefe-drag-message">Drop files to upload</div>
