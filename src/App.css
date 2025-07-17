@@ -1,0 +1,28 @@
+/* Error Boundary Styles */
+.app-error-boundary {
+  padding: 2rem;
+  text-align: center;
+  color: #ef4444;
+  background: #fff0f0;
+}
+.app-error-title {
+  margin-bottom: 1rem;
+}
+.app-error-details {
+  color: #b91c1c;
+  margin-top: 1rem;
+}
+.app-error-reload-btn {
+  margin-top: 2rem;
+  padding: 0.5rem 1.2rem;
+  background: #0ea5e9;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+*{
+  margin: 0;
+  padding: 0;
+}
