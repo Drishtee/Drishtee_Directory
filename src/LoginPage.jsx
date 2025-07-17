@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './AzureFileExplorer.css';
 
+const containerName = import.meta.env.VITE_LOGIN_URL;
+
 function LoginPage({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -27,8 +29,7 @@ function LoginPage({ onLogin }) {
       const response = await fetch('https://testexpenses.drishtee.in/SGCM/employee/employeeLogin', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1MGVmYWQ5YS02YzFjLTRiOTMtOGQ0NC02NDhhODQ4YTQzOWUiLCJzY29wZSI6InJlYWQgd3JpdGUiLCJpYXQiOjE3NTI3NDMxOTgsImV4cCI6MTc1Mjc1Mzk5OH0.BIIuZW6nc1YPNto8UWUqamnod-neNTUGcc9Td0wbAes'
+          'Content-Type': 'application/json'
         },
         body
       });

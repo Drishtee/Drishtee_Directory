@@ -410,21 +410,7 @@ function AzureFileExplorer() {
           </div>
         )}
         {/* ...existing code... */}
-        {currentFolder === 'Root' && (
-          <div className="azurefe-usage-instructions-bottom">
-            <h3 style={{ color: '#b91c1c', marginBottom: '0.7rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span role="img" aria-label="info">📢</span> Usage Instructions
-            </h3>
-            <ul style={{ paddingLeft: '1.2rem', marginBottom: 0 }}>
-              <li><span role="img" aria-label="no-edit">🚫</span> <b>Do NOT upload editable files</b> (Excel, Word, text, etc.).</li>
-              <li><span role="img" aria-label="ok">✅</span> <b>Only upload non-editable files:</b> images, PDFs, and other read-only documents.</li>
-              <li><span role="img" aria-label="warning">⚠️</span> Please use this tool carefully. <b>Do not misuse this tool.</b></li>
-              <li><span role="img" aria-label="folder">📁</span> <b>Create Folder:</b> Click <b>Create</b>, enter a name, and click <b>Create</b>.</li>
-              <li><span role="img" aria-label="upload">⬆️</span> <b>Upload File:</b> Click <b>Upload File</b> and select your file.</li>
-              <li><span role="img" aria-label="drag">🖱️</span> <b>Drag and Drop:</b> Drag files into the explorer window to upload.</li>
-            </ul>
-          </div>
-        )}
+        {/* ...existing code... */}
         {dragActive && (
           <div className="azurefe-drag-overlay">
             <div className="azurefe-drag-message">Drop files to upload</div>
@@ -746,6 +732,23 @@ function AzureFileExplorer() {
         {(loading || uploading || deleting || renamingLoading) && <AzureFELoader />}
 
         {error && <div className="azurefe-error">{error}</div>}
+
+        {/* Usage Instructions at the very bottom in Root */}
+        {currentFolder === 'Root' && (
+          <div className="azurefe-usage-instructions-bottom">
+            <h3 style={{ color: '#b91c1c', marginBottom: '0.7rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <span role="img" aria-label="info">📢</span> Usage Instructions
+            </h3>
+            <ul style={{ paddingLeft: '1.2rem', marginBottom: 0 }}>
+              <li><span role="img" aria-label="no-edit">🚫</span> <b>Do NOT upload editable files</b> (Excel, Word, text, etc.).</li>
+              <li><span role="img" aria-label="ok">✅</span> <b>Only upload non-editable files:</b> images, PDFs, and other read-only documents.</li>
+              <li><span role="img" aria-label="warning">⚠️</span> Please use this tool carefully. <b>Do not misuse this tool.</b></li>
+              <li><span role="img" aria-label="folder">📁</span> <b>Create Folder:</b> Click <b>Create</b>, enter a name, and click <b>Create</b>.</li>
+              <li><span role="img" aria-label="upload">⬆️</span> <b>Upload File:</b> Click <b>Upload File</b> and select your file.</li>
+              <li><span role="img" aria-label="drag">🖱️</span> <b>Drag and Drop:</b> Drag files into the explorer window to upload.</li>
+            </ul>
+          </div>
+        )}
       </main>
     </div>
   );
