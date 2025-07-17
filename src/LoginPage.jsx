@@ -1,7 +1,22 @@
 import React, { useState } from 'react';
 import './AzureFileExplorer.css';
 
-const containerName = import.meta.env.VITE_LOGIN_URL;
+const login_url = import.meta.env.VITE_LOGIN_URL;
+
+function AzureFELoader() {
+  return (
+    <div className="azurefe-loader-overlay">
+      <div className="azurefe-loader-spinner">
+        <svg width="48" height="48" viewBox="0 0 48 48">
+          <circle cx="24" cy="24" r="20" fill="none" stroke="#60a5fa" strokeWidth="5" strokeDasharray="100" strokeDashoffset="60" strokeLinecap="round">
+            <animateTransform attributeName="transform" type="rotate" from="0 24 24" to="360 24 24" dur="1s" repeatCount="indefinite" />
+          </circle>
+        </svg>
+        <div className="azurefe-loader-text">Loading...</div>
+      </div>
+    </div>
+  );
+}
 
 function LoginPage({ onLogin }) {
   const [username, setUsername] = useState('');
@@ -9,6 +24,7 @@ function LoginPage({ onLogin }) {
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [forgotPopup, setForgotPopup] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -16,17 +32,15 @@ function LoginPage({ onLogin }) {
       setError('Please enter username and password.');
       return;
     }
-
     setError('');
-    // Prepare JSON body
+    setLoading(true);
     const body = JSON.stringify({
       username,
       password,
       token: 'drishtee'
     });
-
     try {
-      const response = await fetch('https://testexpenses.drishtee.in/SGCM/employee/employeeLogin', {
+      const response = await fetch(`${login_url}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -34,14 +48,15 @@ function LoginPage({ onLogin }) {
         body
       });
       const data = await response.json();
-      console.log('Login response:', data);
       if (response.ok && data && data.success === true && data.data) {
-        onLogin(data.data); // Pass only user data to parent
+        onLogin(data.data);
       } else {
         setError(data?.message || 'Login failed. Please check your credentials.');
       }
     } catch (err) {
       setError('Network error. Please try again.');
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -123,6 +138,7 @@ function LoginPage({ onLogin }) {
           <img src="https://cdn3d.iconscout.com/3d/premium/thumb/businessman-saying-hello-gesture-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--logo-greeting-pack-business-illustrations-5042419.png" alt="login-illustration" className="login-illustration" />
         </div>
       </div>
+      {loading && <AzureFELoader />}
     </div>
   );
 }
