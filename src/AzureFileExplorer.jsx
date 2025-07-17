@@ -8,6 +8,11 @@ const sasUrl = import.meta.env.VITE_BLOB_SERVICE_SAS_URL;
 const fileServiceUrl = import.meta.env.VITE_FILE_SERVICE_URL;
 const containerName = import.meta.env.VITE_CONTAINER_NAME;
 
+console.log("SAS URL:", import.meta.env.VITE_BLOB_SERVICE_SAS_URL);
+console.log("File Service URL:", import.meta.env.VITE_FILE_SERVICE_URL);
+console.log("Container Name:", import.meta.env.VITE_CONTAINER_NAME);
+
+
 function AzureFileExplorer() {
   // Share modal state
   const [shareModal, setShareModal] = useState({ open: false, url: '', name: '' });
